@@ -9,7 +9,7 @@ const ColorSchemeToggle = ({onClick, sx, ...props}) => {
     return (
         <IconButton
             id="toggle-mode"
-            size="sm"
+            size="md"
             variant="plain"
             color="neutral"
             aria-label="toggle light/dark mode"

@@ -5,9 +5,9 @@ import {CssVarsProvider} from '@mui/joy/styles';
 import {Context} from '@/main.jsx';
 import Header from '@/components/Header.jsx';
 import Loader from '@/components/UI/Loaders/Loader.jsx';
-import AppRouter from './router/AppRouter';
+import AppRouter from '@/router/AppRouter';
 import {useAuthState} from 'react-firebase-hooks/auth';
-import './styles/App.css';
+import '@/styles/App.css';
 
 function App() {
     const {auth} = useContext(Context);

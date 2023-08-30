@@ -35,12 +35,6 @@ const MessageInput = ({textAreaValue, setTextAreaValue, onSubmit}) => {
                             flexGrow={1}
                             minHeight={40}
                         >
-                            <IconButton variant="plain" color="neutral">
-                                <i data-feather="smile"/>
-                            </IconButton>
-                            <IconButton variant="plain" color="neutral">
-                                <i data-feather="more-horizontal"/>
-                            </IconButton>
                             <Button onClick={handleClick}>Send</Button>
                         </Stack>
                     }

@@ -5,8 +5,7 @@ import {Context} from '@/main.jsx';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import {useContext} from 'react';
 import Stack from '@mui/joy/Stack';
-import {Button} from '@mui/joy';
-import Avatar from '@mui/joy/Avatar';
+import {Button, Container} from '@mui/joy';
 import Sheet from '@mui/joy/Sheet';
 import ColorSchemeToggle from '@/components/UI/Buttons/ColorSchemeToggle.jsx';
 
@@ -19,47 +18,42 @@ const Header = () => {
     };
 
     return (
-        <Sheet>
-            <Stack
-                direction="row"
-                justifyContent="space-between"
-                sx={{
-                    borderBottom: '1px solid',
-                    borderColor: 'divider',
-                }}
-                py={2}
-                px={2}
-            >
-                <Stack direction="row" spacing={{xs: 1, md: 2}} alignItems="center">
-                    <Avatar size="lg"/>
-                    <div>
-                        <Typography
-                            fontWeight="lg"
-                            fontSize="lg"
-                            component="h2"
-                            noWrap
-                        >
-                            Emil Burganov
-                        </Typography>
-
-                        <Typography level="body-sm">
-                            @emilburganov
-                        </Typography>
-                    </div>
+        <Sheet sx={{
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+        }}>
+            <Container>
+                <Stack
+                    direction="row"
+                    justifyContent="space-between"
+                    py={2}
+                >
+                    <Stack direction="row" spacing={{xs: 1, md: 2}} alignItems="center">
+                        <div>
+                            <Typography
+                                fontWeight="lg"
+                                fontSize="22px"
+                                component="h2"
+                                noWrap
+                            >
+                                OnlineChat
+                            </Typography>
+                        </div>
+                    </Stack>
+                    <Stack spacing={1} direction="row" alignItems="center">
+                        {user ?
+                            <Button onClick={logout}>
+                                Logout
+                            </Button>
+                            :
+                            <Button component={Link} to={LOGIN_ROUTE}>
+                                Login
+                            </Button>
+                        }
+                        <ColorSchemeToggle/>
+                    </Stack>
                 </Stack>
-                <Stack spacing={1} direction="row" alignItems="center">
-                    {user ?
-                        <Button onClick={logout}>
-                            Logout
-                        </Button>
-                        :
-                        <Button component={Link} to={LOGIN_ROUTE}>
-                            Login
-                        </Button>
-                    }
-                    <ColorSchemeToggle/>
-                </Stack>
-            </Stack>
+            </Container>
         </Sheet>
     );
 };
