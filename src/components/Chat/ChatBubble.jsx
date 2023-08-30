@@ -44,6 +44,8 @@ const ChatBubble = ({variant, displayName, createdAt, text, uid}) => {
                         borderRadius: 'lg',
                         borderTopRightRadius: isSent ? 0 : 'lg',
                         borderTopLeftRadius: isSent ? 'lg' : 0,
+                        overflow: 'hidden',
+                        wordBreak: 'break-all'
                     }}
                 >
                     {text}
