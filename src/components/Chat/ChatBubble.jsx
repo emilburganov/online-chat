@@ -1,10 +1,10 @@
+import {useAuthState} from 'react-firebase-hooks/auth';
+import {useContext, useEffect} from 'react';
 import Box from '@mui/joy/Box';
 import Stack from '@mui/joy/Stack';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import {Context} from '@/main.jsx';
-import {useAuthState} from 'react-firebase-hooks/auth';
-import {useContext} from 'react';
+import {Context} from '@/context/index.js';
 import getDateTime from '@/utils/getDateTime.js';
 
 const ChatBubble = ({variant, displayName, createdAt, text, uid}) => {
@@ -14,15 +14,14 @@ const ChatBubble = ({variant, displayName, createdAt, text, uid}) => {
     const isYou = user.uid === uid;
     const isSent = variant === 'sent';
 
-    const timestamp = createdAt.seconds * 1000;
-    const datetime = getDateTime(timestamp);
+    const datetime = getDateTime(createdAt);
 
     return (
         <Box sx={{maxWidth: '80%', minWidth: 'auto'}}>
             <Stack
                 direction="row"
                 justifyContent="space-between"
-                spacing={2}
+                spacing={6}
                 sx={{mb: 0.25}}
             >
                 <Typography level="body-xs">
@@ -33,7 +32,7 @@ const ChatBubble = ({variant, displayName, createdAt, text, uid}) => {
                 </Typography>
             </Stack>
             <Box
-                sx={{ position: 'relative' }}
+                sx={{position: 'relative'}}
             >
                 <Sheet
                     color={isSent ? 'primary' : 'neutral'}
@@ -45,7 +44,7 @@ const ChatBubble = ({variant, displayName, createdAt, text, uid}) => {
                         borderTopRightRadius: isSent ? 0 : 'lg',
                         borderTopLeftRadius: isSent ? 'lg' : 0,
                         overflow: 'hidden',
-                        wordBreak: 'break-all'
+                        wordBreak: 'break-all',
                     }}
                 >
                     {text}
