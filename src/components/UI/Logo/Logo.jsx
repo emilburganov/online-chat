@@ -1,7 +1,7 @@
 import React from 'react';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/joy/Stack';
 import {Link} from 'react-router-dom';
+import Stack from '@mui/joy/Stack';
+import Typography from '@mui/material/Typography';
 
 const Logo = () => {
     return (

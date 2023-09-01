@@ -1,69 +1,54 @@
-import React from 'react';
+import {useContext} from 'react';
+import {useAuthState} from 'react-firebase-hooks/auth';
 import Box from '@mui/joy/Box';
-import ListDivider from '@mui/joy/ListDivider';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
 import Stack from '@mui/joy/Stack';
+import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
-import CircleIcon from '@mui/icons-material/Circle';
-import AvatarWithStatus from './AvatarWithStatus.jsx';
+import {Context} from '@/context/index.js';
+import getDateTime from '@/utils/getDateTime.js';
 
-const ChatListItem = ({id, sender, messages, selectedChatId, setSelectedChat}) => {
-    const selected = selectedChatId === id;
+const ChatListItem = ({variant, displayName, createdAt, text, uid}) => {
+    const {auth} = useContext(Context);
+    const [user] = useAuthState(auth);
+
+    const isYou = user.uid === uid;
+    const isSent = variant === 'sent';
+    const datetime = getDateTime(createdAt);
 
     return (
-        <React.Fragment>
-            <ListItem>
-                <ListItemButton
-                    onClick={() => {
-                        setSelectedChat({id, sender, messages});
-                    }}
-                    selected={selected}
-                    color="neutral"
+        <Box>
+            <Stack
+                direction="row"
+                justifyContent="space-between"
+                spacing={4}
+                sx={{mb: 0.25}}
+            >
+                <Typography level="body-xs">
+                    {isYou ? 'You' : displayName}
+                </Typography>
+                <Typography level="body-xs">
+                    {datetime}
+                </Typography>
+            </Stack>
+            <Box sx={{position: 'relative'}}>
+                <Sheet
+                    color={isSent ? 'primary' : 'neutral'}
+                    variant={isSent ? 'solid' : 'soft'}
                     sx={{
-                        flexDirection: 'column',
-                        alignItems: 'initial',
-                        gap: 1,
-                        fontWeight: 'normal',
+                        px: 1.25,
+                        py: 1.25,
+                        borderRadius: 'lg',
+                        borderTopRightRadius: isSent ? 0 : 'lg',
+                        borderTopLeftRadius: isSent ? 'lg' : 0,
+                        overflow: 'hidden',
+                        wordBreak: 'break-all',
                     }}
                 >
-                    <Stack direction="row" spacing={1.5}>
-                        <AvatarWithStatus online={sender.online} src={sender.avatar}/>
-                        <Box sx={{flex: 1}}>
-                            <Typography fontSize="sm" fontWeight="lg">
-                                {sender.name}
-                            </Typography>
-                            <Typography level="body-sm">{sender.username}</Typography>
-                        </Box>
-                        <Box sx={{lineHeight: 1, textAlign: 'right'}}>
-                            <Typography
-                                level="body-sm"
-                                display={{xs: 'none', md: 'block'}}
-                                noWrap
-                            >
-                                5 mins ago
-                            </Typography>
-                            {messages[0].unread && (
-                                <CircleIcon sx={{fontSize: 10}} color="primary"/>
-                            )}
-                        </Box>
-                    </Stack>
-                    <Typography
-                        level="body-sm"
-                        sx={{
-                            display: '-webkit-box',
-                            WebkitLineClamp: '2',
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                        }}
-                    >
-                        {messages[0].content}
-                    </Typography>
-                </ListItemButton>
-            </ListItem>
-            <ListDivider sx={{margin: 0}}/>
-        </React.Fragment>
+                    {text}
+                </Sheet>
+            </Box>
+        </Box>
+
     );
 };
 

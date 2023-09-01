@@ -1,12 +1,13 @@
-import React from 'react';
+import {useRef} from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import Textarea from '@mui/joy/Textarea';
-import {IconButton, Stack} from '@mui/joy';
+import {Stack} from '@mui/joy';
 
 const MessageInput = ({textAreaValue, setTextAreaValue, onSubmit}) => {
-    const textAreaRef = React.useRef(null);
+    const textAreaRef = useRef(null);
+
     const handleClick = () => {
         if (textAreaValue.trim() !== '') {
             onSubmit();
