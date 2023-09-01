@@ -1,13 +1,13 @@
-import Typography from '@mui/material/Typography';
 import {Link} from 'react-router-dom';
-import {LOGIN_ROUTE} from '@/utils/constants.js';
-import {Context} from '@/main.jsx';
+import {LOGIN_ROUTE} from '@/utils/constants';
+import {Context} from '@/context/index';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import {useContext} from 'react';
-import Stack from '@mui/joy/Stack';
 import {Button, Container} from '@mui/joy';
-import Sheet from '@mui/joy/Sheet';
-import ColorSchemeToggle from '@/components/UI/Buttons/ColorSchemeToggle.jsx';
+import Stack from '@mui/joy/Stack';
+import Box from '@mui/joy/Box';
+import ColorSchemeToggle from '@/components/UI/Button/ColorSchemeToggle';
+import Logo from '@/components/UI/Logo/Logo';
 
 const Header = () => {
     const {auth} = useContext(Context);
@@ -18,7 +18,7 @@ const Header = () => {
     };
 
     return (
-        <Sheet sx={{
+        <Box sx={{
             borderBottom: '1px solid',
             borderColor: 'divider',
         }}>
@@ -28,18 +28,7 @@ const Header = () => {
                     justifyContent="space-between"
                     py={2}
                 >
-                    <Stack direction="row" spacing={{xs: 1, md: 2}} alignItems="center">
-                        <div>
-                            <Typography
-                                fontWeight="lg"
-                                fontSize="22px"
-                                component="h2"
-                                noWrap
-                            >
-                                OnlineChat
-                            </Typography>
-                        </div>
-                    </Stack>
+                    <Logo/>
                     <Stack spacing={1} direction="row" alignItems="center">
                         {user ?
                             <Button onClick={logout}>
@@ -54,7 +43,7 @@ const Header = () => {
                     </Stack>
                 </Stack>
             </Container>
-        </Sheet>
+        </Box>
     );
 };
 

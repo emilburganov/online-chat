@@ -2,7 +2,7 @@ import {initializeApp} from 'firebase/app';
 import {getAuth} from 'firebase/auth';
 import {getFirestore} from 'firebase/firestore';
 
-const app = initializeApp({
+export const firebaseApp = initializeApp({
     apiKey: 'AIzaSyCCvXPnFK9M1GJPs_D_dN5mvJHPb2nVeqM',
     authDomain: 'online-chat-29f1d.firebaseapp.com',
     projectId: 'online-chat-29f1d',
@@ -12,5 +12,5 @@ const app = initializeApp({
     measurementId: 'G-RSZP80P7VM',
 });
 
-export const auth = getAuth(app);
-export const firestore = getFirestore(app)
+export const auth = getAuth(firebaseApp);
+export const firestore = getFirestore(firebaseApp)

@@ -2,8 +2,8 @@ import React, {useContext} from 'react';
 import {Box} from '@mui/material';
 import Sheet from '@mui/joy/Sheet';
 import {Button} from '@mui/joy';
-import {Context} from '@/main.jsx';
-import GoogleIcon from '@/components/UI/Icons/GoogleIcon.jsx';
+import {Context} from '@/context/index';
+import GoogleIcon from '@/components/UI/Icon/GoogleIcon.jsx';
 import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
 
 const Login = () => {

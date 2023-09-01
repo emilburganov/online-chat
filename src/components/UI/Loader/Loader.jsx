@@ -1,4 +1,4 @@
-import {Box, CircularProgress} from '@mui/material';
+import {Box, CircularProgress} from '@mui/joy';
 
 const Loader = () => {
     return (
@@ -7,8 +7,9 @@ const Loader = () => {
             justifyContent={'center'}
             alignItems={'center'}
             minHeight={'100vh'}
+            sx={{backgroundColor: 'primary'}}
         >
-            <CircularProgress/>
+            <CircularProgress variant={'plain'} color={'neutral'} />
         </Box>
     );
 };

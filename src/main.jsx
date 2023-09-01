@@ -1,12 +1,11 @@
-import React, {createContext} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import {auth, firestore} from '@/utils/firebase.js';
-
-export const Context = createContext(null);
+import App from './App';
+import {firebaseApp, auth, firestore} from './utils/firebase';
+import {Context} from './context/index'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <Context.Provider value={{auth, firestore}}>
+    <Context.Provider value={{firebaseApp, auth, firestore}}>
         <App/>
     </Context.Provider>,
 );

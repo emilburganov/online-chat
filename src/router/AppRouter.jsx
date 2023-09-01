@@ -3,7 +3,7 @@ import {Route, Routes} from 'react-router-dom';
 import {privateRoutes, publicRoutes} from './Routes.jsx';
 import Login from '@/pages/Login.jsx';
 import Chat from '@/pages/Chat.jsx';
-import {Context} from '@/main.jsx';
+import {Context} from '@/context/index.js';
 import {useAuthState} from 'react-firebase-hooks/auth';
 
 const AppRouter = () => {

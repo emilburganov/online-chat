@@ -1,10 +1,11 @@
 import React, {useContext} from 'react';
-import {Context} from '@/main.jsx';
 import {BrowserRouter} from 'react-router-dom';
+import {Context} from '@/context/index';
 import {CssBaseline} from '@mui/material';
 import {CssVarsProvider} from '@mui/joy/styles';
-import Header from '@/components/Header.jsx';
-import Loader from '@/components/UI/Loaders/Loader.jsx';
+import Sheet from '@mui/joy/Sheet';
+import Header from '@/components/Header';
+import Loader from '@/components/UI/Loader/Loader';
 import AppRouter from '@/router/AppRouter';
 import {useAuthState} from 'react-firebase-hooks/auth';
 import '@/styles/App.css';
@@ -14,8 +15,9 @@ function App() {
     const [user, isLoading, error] = useAuthState(auth);
 
     return (
-            <CssVarsProvider defaultMode="system" disableTransitionOnChange>
-                <CssBaseline/>
+        <CssVarsProvider defaultMode="system" disableTransitionOnChange>
+            <CssBaseline/>
+            <Sheet>
                 {isLoading ?
                     <Loader/>
                     :
@@ -24,7 +26,8 @@ function App() {
                         <AppRouter/>
                     </BrowserRouter>
                 }
-            </CssVarsProvider>
+            </Sheet>
+        </CssVarsProvider>
     );
 }
 

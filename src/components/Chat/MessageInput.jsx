@@ -15,7 +15,7 @@ const MessageInput = ({textAreaValue, setTextAreaValue, onSubmit}) => {
     };
 
     return (
-        <Box sx={{px: 2, pb: 3}}>
+        <Box sx={{pt: 3}}>
             <FormControl>
                 <Textarea
                     placeholder="Type something here…"
@@ -35,7 +35,9 @@ const MessageInput = ({textAreaValue, setTextAreaValue, onSubmit}) => {
                             flexGrow={1}
                             minHeight={40}
                         >
-                            <Button onClick={handleClick}>Send</Button>
+                            <Button onClick={handleClick}>
+                                Send
+                            </Button>
                         </Stack>
                     }
                     onKeyDown={(event) => {
